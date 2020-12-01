@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "dotooDB": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

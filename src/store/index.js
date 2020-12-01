@@ -4,12 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+	state: {
+		apiName: 'dotoorestapi'
+	},
+	mutations: {
+	},
+	getters: {
+		getAPIName: (state) => state.apiName 
+	},
+	actions: {
+	},
+	modules: {
+	}
 })

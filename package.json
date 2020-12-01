@@ -8,6 +8,8 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "@aws-amplify/ui-vue": "^0.2.30",
+    "aws-amplify": "^3.3.11",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

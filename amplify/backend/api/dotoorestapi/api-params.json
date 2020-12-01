@@ -1,0 +1,41 @@
+{
+    "paths": [
+        {
+            "name": "/todos",
+            "lambdaFunction": "dotooRestAPI",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            }
+        }
+    ],
+    "resourceName": "dotoorestapi",
+    "apiName": "dotoorestapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "dotooRestAPI"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-dotoo-dev-194233-authRole",
+        "unAuthRoleName": "amplify-dotoo-dev-194233-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "dotooRestAPI",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
