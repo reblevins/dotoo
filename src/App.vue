@@ -93,20 +93,12 @@ ul {
     margin: 0;
     padding: 0;
 }
-h2.date {
-    text-align: center;
-    display: grid;
-    grid-template-columns: 1.5em 1fr 1.5em 85px;
-    align-items: center;
-
-    i { cursor: pointer; font-size: 1.5em; }
-}
 a {
     text-decoration: none;
-    color: initial;
+    color: #2c3e50;
 }
 
-#app {
+* {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	color: #2c3e50;
 }
@@ -140,89 +132,25 @@ header {
     &.signin {
         padding: 1.5em;
     }
+
+    @media (min-width: 769px) {
+        padding: 1em 2em;
+    }
+    @media (min-width: 1025px) {
+        margin: 2em auto;
+        max-width: 1024px;
+    }
 }
-
-ul.todos {
-    margin-bottom: 2rem;
-    position: relative;
-    li {
-        font-size: 1.2em;
-        padding: 1rem 0;
-    }
-    li:not(.empty-list):not(.spinner) {
-        display: grid;
-        grid-template-columns: 2rem 9fr 1.5fr;
-        align-items: center;
-        border-bottom: 1px solid $lightgray;
-        grid-gap: 0.5rem;
-
-        &:first-child {
-            border-top: 1px solid $lightgray;
-        }
-
-        .completed {
-            font-size: 1.2rem;
-        }
-        i.far, i.fas {
-            cursor: pointer;
-        }
-        .completed, .fa-plus {
-            justify-self: right;
-        }
-        i.fas.fa-times {
-            justify-self: left;
-            display: none;
-        }
-
-        input[type="text"] {
-            padding: 0.7rem 0 0.7rem 1rem;
-            font-size: 1.2em;
-            border: none;
-        }
-
-        &:hover i.fas.fa-times, input:focus ~ i.fas.fa-times { display: inline-block; }
-
-        &.new-todo {
-            cursor: pointer;
-            border-bottom: none;
-            span {
-                padding: 0.8rem 0 0.7rem 1rem;
-                font-size: 1.2em;
-            }
-            input[type="text"] {
-                border: 1px solid $lightgray;
-            }
-            i.fas.fa-times {
-                grid-row: 1 / 2;
-                grid-column: 3 / 4;
-                padding: 0 1rem;
-            }
-            .small {
-                grid-column: 2 / 3;
-                font-size: 0.7rem;
-                padding-top: 5px;
-            }
-
-            &.saving {
-                cursor: not-allowed;
-                input, i.far, i.fas { cursor: not-allowed; }
-            }
-        }
-    }
-    li.empty-list {
-        padding: 1rem 1.2rem;
-    }
-    li.spinner {
-        position: absolute;
-        display: grid;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        align-items: center;
-        justify-items: center;
-        font-size: 3em;
-        background: rgba(255, 255, 255, 0.8);
-    }
+.spinner {
+    position: absolute;
+    display: grid;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    align-items: center;
+    justify-items: center;
+    font-size: 3em;
+    background: rgba(255, 255, 255, 0.8);
 }
 </style>

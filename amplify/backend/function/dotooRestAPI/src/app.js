@@ -198,9 +198,9 @@ app.post(path, function(req, res) {
 
 app.delete(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
   var params = {};
-  if (userIdPresent && req.apiGateway) {
-    params[partitionKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  } else {
+  // if (userIdPresent && req.apiGateway) {
+  //   params[partitionKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
+  // } else {
     params[partitionKeyName] = req.params[partitionKeyName];
      try {
       params[partitionKeyName] = convertUrlType(req.params[partitionKeyName], partitionKeyType);
@@ -208,7 +208,7 @@ app.delete(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
       res.statusCode = 500;
       res.json({error: 'Wrong column type ' + err});
     }
-  }
+  // }
   if (hasSortKey) {
     try {
       params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType);
@@ -227,7 +227,7 @@ app.delete(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
       res.statusCode = 500;
       res.json({error: err, url: req.url});
     } else {
-      res.json({url: req.url, data: data});
+      res.json({url: req.url, data: data, removeItemParams});
     }
   });
 });
