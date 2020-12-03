@@ -113,10 +113,11 @@ export default {
         }
     },
     mounted() {
-        console.log(this.$route.query.date);
         if (this.$route.query.date) {
             this.date = this.$moment(this.$route.query.date, 'YYYY-MM-DD')
         }
+        console.log(this.$route.query.view);
+        this.view = (this.$route.query.view) ? this.$route.query.view : 'day'
         this.newToDo = {
             id: uuid.generate(),
             dateDue: this.date.format('YYYY-MM-DD'),
