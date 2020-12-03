@@ -55,13 +55,15 @@
             <li>Th</li>
             <li>F</li>
             <li>S</li>
-            <li class="day" v-for="(dayOfMonth, index) in days" @click="$router.push({ query: { date: dayOfMonth.fullDate }})" v-if="dayOfMonth.dayLabel">
-                <div class="day-label">{{ dayOfMonth.dayLabel }}</div>
-                <ul class="days-to-dos" v-if="dayOfMonth.toDos.length > 0">
-                    <li v-for="(toDo, index) in dayOfMonth.toDos">{{ toDo.description }}</li>
-                </ul>
+            <!-- <li class="day" v-for="(dayOfMonth, index) in days" v-if="!dayOfMonth.dayLabel"></li> -->
+            <li class="day" :class="{ empty: !dayOfMonth.dayLabel }" v-for="(dayOfMonth, index) in days">
+                <div @click="goToDay(dayOfMonth)">
+                    <div class="day-label">{{ dayOfMonth.dayLabel }}</div>
+                    <ul class="days-to-dos" v-if="dayOfMonth.toDos.length > 0">
+                        <li v-for="(toDo, index) in dayOfMonth.toDos">{{ toDo.description }}</li>
+                    </ul>
+                </div>
             </li>
-            <!-- <li class="day" v-for="(dayOfMonth, index) in days" v-else="dayOfMonth.date"></li> -->
         </ul>
     </div>
 </template>
@@ -168,6 +170,7 @@ export default {
             }
             days.push({
                 dayLabel: date.date(),
+                fullDate: date.format('YYYY-MM-DD'),
                 toDos: this.toDos.filter(toDo => toDo.dateDue == date.format('YYYY-MM-DD'))
             })
             for (var i = 2; i <= daysInMonth; i++) {
@@ -252,6 +255,11 @@ export default {
             }
             console.log();
             this.$router.push({ query: { date: this.date.format('YYYY-MM-DD') }})
+        },
+        goToDay(dayOfMonth) {
+            console.log(dayOfMonth.fullDate);
+            if (!dayOfMonth.fullDate) return
+            this.$router.push({ query: { date: dayOfMonth.fullDate }})
         }
     }
 }
@@ -263,13 +271,17 @@ ul.calendar {
     grid-template-columns: repeat(7, calc(100vw / 7));
 
     li.day {
+        & > div {
+            height: 100%;
+            width: 100%;
+        }
         height: 90px;
         border: 1px solid lightgray;
         position: relative;
         padding-right: 4px;
         cursor: pointer;
 
-        &:hover {
+        &:not(.empty):hover {
             background-color: #CFD8DC;
         }
 
