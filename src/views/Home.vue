@@ -35,7 +35,8 @@
                 <div></div>
                 <input type="text" :disabled="saving == 'new'" v-model="newToDo.description" @keyup.enter="putNewTodo" @keyup.esc="addingToDo = false" v-focus>
                 <div class="small">Hit enter when done. Esc to cancel.</div>
-                <i class="fas fa-times" @click="addingToDo = false" v-if="newToDo.description"></i>
+                <i class="fas fa-check" @click="putNewTodo"></i>
+                <i class="fas fa-times" @click="addingToDo = false"></i>
             </li>
         </ul>
         <h3>Completed</h3>
@@ -224,7 +225,7 @@ export default {
             })
         },
         async putNewTodo() {
-            if (this.saving) return
+            if (this.saving || !this.newToDo.description) return
             this.saving = 'new'
             await API.put(this.getAPIName, '/todos', {
                 body: this.newToDo
@@ -376,6 +377,7 @@ ul.todos {
         &.new-todo {
             cursor: pointer;
             border-bottom: none;
+            grid-template-columns: 2rem 9fr 0.3fr 0.3fr;
             span {
                 padding: 0.8rem 0 0.7rem 1rem;
                 font-size: 1.2em;
@@ -383,10 +385,19 @@ ul.todos {
             input[type="text"] {
                 border: 1px solid $lightgray;
             }
-            i.fas.fa-times {
+            i.fas.fa-check {
+                display: inline-block;
                 grid-row: 1 / 2;
                 grid-column: 3 / 4;
-                padding: 0 1rem;
+                justify-self: center;
+                // padding: 0 1rem;
+            }
+            i.fas.fa-times {
+                display: inline-block;
+                grid-row: 1 / 2;
+                grid-column: 4 / 5;
+                justify-self: center;
+                // padding: 0 1rem;
             }
             .small {
                 grid-column: 2 / 3;
