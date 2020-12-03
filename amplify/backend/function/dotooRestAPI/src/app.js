@@ -25,7 +25,7 @@ if(process.env.ENV && process.env.ENV !== "NONE") {
   tableName = tableName + '-' + process.env.ENV;
 }
 
-const userIdPresent = false; // TODO: update in case is required to use that definition
+const userIdPresent = true; // TODO: update in case is required to use that definition
 const partitionKeyName = "id";
 const partitionKeyType = "S";
 const sortKeyName = "";
@@ -61,14 +61,14 @@ const convertUrlType = (param, type) => {
  * HTTP Get method for list objects *
  ********************************/
 
-app.get(path + hashKeyPath, function(req, res) {
+app.get(path, function(req, res) {
   var condition = {}
-  condition[partitionKeyName] = {
+  condition['userId'] = {
     ComparisonOperator: 'EQ'
   }
 
   if (userIdPresent && req.apiGateway) {
-    condition[partitionKeyName]['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH ];
+    condition['userId']['AttributeValueList'] = [req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH ];
   } else {
     try {
       condition[partitionKeyName]['AttributeValueList'] = [ convertUrlType(req.params[partitionKeyName], partitionKeyType) ];
@@ -80,15 +80,20 @@ app.get(path + hashKeyPath, function(req, res) {
 
   let queryParams = {
     TableName: tableName,
-    KeyConditions: condition
+    FilterExpression: 'userId = :userId',
+    ExpressionAttributeValues: { ':userId': req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH }
   }
 
-  dynamodb.query(queryParams, (err, data) => {
+  dynamodb.scan(queryParams, (err, data) => {
     if (err) {
       res.statusCode = 500;
-      res.json({error: 'Could not load items: ' + err});
+      res.json({ error: 'Could not load items: ' + err, queryParams });
     } else {
-      res.json(data.Items);
+        let responseData = {
+            items: data.Items,
+            queryParams
+        }
+      res.json(responseData);
     }
   });
 });

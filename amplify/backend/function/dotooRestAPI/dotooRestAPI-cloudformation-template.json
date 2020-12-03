@@ -83,7 +83,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-dotoo-dev-194233-deployment",
-					"S3Key": "amplify-builds/dotooRestAPI-37545333695a4f396f54-build.zip"
+					"S3Key": "amplify-builds/dotooRestAPI-7474654c417a68596272-build.zip"
 				}
 			}
 		},
