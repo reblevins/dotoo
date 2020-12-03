@@ -2,14 +2,14 @@
     <div class="day-view" v-if="view == 'day'">
         <h2 class="date">
             <i class="fas fa-caret-left" @click="changeDate('backwards')"></i>
-            <template v-if="date.format('YYYY-MM-DD') == today.format('YYYY-MM-DD')">
+            <template v-if="isToday">
                 Today
             </template>
             <template v-else>
                 {{ date.format('MM/DD/YYYY' )}}
             </template>
             <i class="fas fa-caret-right" @click="changeDate('forwards')"></i>
-            <router-link to="/"><i class="fas fa-calendar-day"></i></router-link>
+            <router-link to="/"><i class="fas fa-calendar-day" :class="{ disabled: isToday }"></i></router-link>
             <router-link to="/?view=month"><i class="fas fa-calendar-alt"></i></router-link>
         </h2>
         <ul class="todos" :class="{ loading: loading }">
@@ -168,6 +168,9 @@ export default {
         ]),
         today() {
             return this.$moment()
+        },
+        isToday() {
+            return this.date.format('YYYY-MM-DD') == this.today.format('YYYY-MM-DD')
         },
         uncompletedToDosByDate() {
             return this.toDos.filter(toDo => toDo.dateDue == this.date.format('YYYY-MM-DD') && !toDo.completed)

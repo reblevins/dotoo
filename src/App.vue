@@ -132,6 +132,11 @@ header {
 }
 i:not(.fa-check-square):not(.fa-square):not(.fa-times) {
     color: #2c99ed;
+
+    &.disabled {
+        color: lightgray;
+        cursor: default;
+    }
 }
 input[type="text"]:focus {
     outline: #2c3e50 dashed 1px;
