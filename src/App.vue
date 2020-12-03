@@ -114,6 +114,10 @@ header {
     h1 {
         margin: 0;
         text-align: left;
+
+        a {
+            color: #2c99ed;
+        }
     }
     em {
         display: block;
@@ -125,6 +129,12 @@ header {
         justify-self: right;
         align-self: center;
     }
+}
+i:not(.fa-check-square):not(.fa-square):not(.fa-times) {
+    color: #2c99ed;
+}
+input[type="text"]:focus {
+    outline: #2c3e50 dashed 1px;
 }
 .main {
     padding: 1em 0;
