@@ -19,7 +19,7 @@
         </header>
 
         <div class="main" :class="{ signin: getAuthState !== 'signedin' }">
-            <amplify-authenticator username-alias="email">
+            <amplify-authenticator username-alias="email" :federated="federated">
                 <amplify-sign-up
                     slot="sign-up"
                     username-alias="email"
@@ -35,7 +35,7 @@
 import { onAuthUIStateChange } from '@aws-amplify/ui-components'
 import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
-    data() {
+	data() {
         return {
             formFields: [
                 {
@@ -48,7 +48,10 @@ export default {
                     label: 'Password',
                     required: true,
                 },
-            ]
+            ],
+			federated: {
+			    google_client_id: '68736317493-2c5cubmngijsjr2knpf820c0erlkds55.apps.googleusercontent.com',
+			}
         }
     },
     mounted() {

@@ -37,7 +37,8 @@
     "auth": {
         "cognito7e45a982": {
             "service": "Cognito",
-            "providerPlugin": "awscloudformation"
+            "providerPlugin": "awscloudformation",
+            "dependsOn": []
         }
     },
     "api": {

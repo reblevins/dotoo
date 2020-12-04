@@ -22,5 +22,34 @@
                 }
             }
         }
+    },
+    "auth": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-dotoo-auth-143347-authRole",
+            "UnauthRoleArn": "arn:aws:iam::414705225856:role/amplify-dotoo-auth-143347-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::414705225856:role/amplify-dotoo-auth-143347-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-dotoo-auth-143347-deployment",
+            "UnauthRoleName": "amplify-dotoo-auth-143347-unauthRole",
+            "StackName": "amplify-dotoo-auth-143347",
+            "StackId": "arn:aws:cloudformation:us-east-2:414705225856:stack/amplify-dotoo-auth-143347/66894660-3678-11eb-85bb-0ab7f0172fc4",
+            "AmplifyAppId": "d1jxdglutwdth3"
+        },
+        "categories": {
+            "auth": {
+                "cognito7e45a982": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\",\"client_id\":\"68736317493-2c5cubmngijsjr2knpf820c0erlkds55.apps.googleusercontent.com\",\"client_secret\":\"WKTQbwuHPqwOMcIdiQCJKLUx\"}]"
+                }
+            },
+            "function": {
+                "dotooRestAPI": {}
+            },
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d1jxdglutwdth3",
+                    "type": "manual"
+                }
+            }
+        }
     }
 }
