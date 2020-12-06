@@ -149,6 +149,9 @@ input[type="text"]:focus {
 
     &.signin {
         padding: 1.5em;
+		text-align: center;
+		max-width: 560px;
+		margin: 0 auto;
     }
 
     @media (min-width: 769px) {
