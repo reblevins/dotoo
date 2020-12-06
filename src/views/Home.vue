@@ -117,7 +117,6 @@ export default {
         if (this.$route.query.date) {
             this.date = this.$moment(this.$route.query.date, 'YYYY-MM-DD')
         }
-        console.log(this.$route.query.view);
         this.view = (this.$route.query.view) ? this.$route.query.view : 'day'
         this.newToDo = {
             id: uuid.generate(),
@@ -154,7 +153,6 @@ export default {
             }
         },
         getAuthState(newVal) {
-            console.log(newVal);
             if (newVal == 'signedin') {
                 this.fetchToDos()
             } else if (newVal == 'signin') {
@@ -186,7 +184,6 @@ export default {
             var date = this.date.clone().date(1)
             var firstDay = date.clone().day(0)
             if (firstDay.isBefore(date)) {
-                console.log(firstDay.format('YYYY-MM-DD'));
                 for (var i = firstDay.date(); i <= firstDay.daysInMonth(); i++) {
                     days.push({
                         dayLabel: null,
@@ -208,7 +205,6 @@ export default {
                     toDos: this.toDos.filter(toDo => toDo.dateDue == date.format('YYYY-MM-DD'))
                 })
             }
-            console.log(days);
             return days
         }
     },
@@ -216,7 +212,6 @@ export default {
         fetchToDos() {
             this.loading = true
             API.get(this.getAPIName, '/todos').then(response => {
-                console.log(response);
                 this.toDos = response.items
                 this.loading = false
             }).catch(error => {
@@ -277,7 +272,6 @@ export default {
                     this.date.add(1, 'days')
                     break;
             }
-            console.log();
             this.$router.push({ query: { date: this.date.format('YYYY-MM-DD') }})
         },
         changeMonth(direction) {
@@ -289,11 +283,9 @@ export default {
                     this.date.add(1, 'months')
                     break;
             }
-            console.log();
             this.$router.push({ query: { date: this.date.format('YYYY-MM-DD'), view: 'month' }})
         },
         goToDay(dayOfMonth) {
-            console.log(dayOfMonth.fullDate);
             if (!dayOfMonth.fullDate) return
             this.$router.push({ query: { date: dayOfMonth.fullDate }})
         }
